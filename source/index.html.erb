@@ -19,7 +19,13 @@ title: Welcome to Boon.gl
 
   <h2>Elsewhere:</h2>
   <ul>
-    <li><%= link_to 'Github', 'https://github.com/mockdeep' %></li>
-    <li><%= link_to 'Email', 'mailto:lobatifricha@gmail.com' %></li>
+    <li>
+      <% link_to 'https://github.com/mockdeep' do
+        "<i class='fa fa-2x fa-github'></i>"
+      end %>
+    </li>
+    <li><% link_to 'mailto:lobatifricha@gmail.com' do
+      "<i class='fa fa-2x fa-envelope-o'></i>"
+    end %></li>
   </ul>
 </div>

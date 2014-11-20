@@ -40,6 +40,8 @@ GEM
     eventmachine (1.0.3)
     execjs (2.2.2)
     ffi (1.9.6)
+    font-awesome-middleman (4.2.1)
+      middleman-core (>= 3.0.0)
     haml (4.0.5)
       tilt
     hike (1.2.3)
@@ -139,6 +141,7 @@ PLATFORMS
 DEPENDENCIES
   bitters
   bourbon
+  font-awesome-middleman
   middleman (~> 3.3.7)
   middleman-livereload (~> 3.1.0)
   neat
