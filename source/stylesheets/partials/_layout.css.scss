@@ -1,0 +1,22 @@
+.welcome {
+  text-align: center;
+
+  h1 {
+    font-family: 'EB Garamond', $serif;
+    text-align: center;
+    font-size: em(60);
+    margin: em(25);
+  }
+
+  h2 {
+    margin-top: em(10);
+  }
+
+  ul.icons {
+    li {
+      display: inline-block;
+    }
+  }
+
+  @include outer-container;
+}

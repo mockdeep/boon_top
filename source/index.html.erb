@@ -11,21 +11,21 @@ title: Welcome to Boon.gl
   </p>
   <h2>Sites:</h2>
   <ul>
-    <li><%= link_to 'blog.boon.gl', 'http://blog.boon.gl' %></li>
-    <li><%= link_to 'questlog.boon.gl', 'http://questlog.boon.gl' %></li>
-    <li><%= link_to 'better.boon.gl', 'http://better.boon.gl' %></li>
-    <li><%= link_to 'track.boon.gl', 'http://track.boon.gl' %></li>
+    <li><%= link_to 'blog.boon.gl', 'http://blog.boon.gl', title: 'blog' %></li>
+    <li><%= link_to 'questlog.boon.gl', 'http://questlog.boon.gl', title: 'questlog' %></li>
+    <li><%= link_to 'better.boon.gl', 'http://better.boon.gl', title: 'better' %></li>
+    <li><%= link_to 'track.boon.gl', 'http://track.boon.gl', title: 'track' %></li>
   </ul>
 
   <h2>Elsewhere:</h2>
-  <ul>
+  <ul class='icons'>
     <li>
       <% link_to 'https://github.com/mockdeep' do
-        "<i class='fa fa-2x fa-github'></i>"
+        "<i class='fa fa-2x fa-github' title='github'></i>"
       end %>
     </li>
     <li><% link_to 'mailto:lobatifricha@gmail.com' do
-      "<i class='fa fa-2x fa-envelope-o'></i>"
+      "<i class='fa fa-2x fa-envelope-o' title='email'></i>"
     end %></li>
   </ul>
 </div>
