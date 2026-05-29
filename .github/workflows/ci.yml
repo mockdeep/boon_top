@@ -12,48 +12,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Single source of truth for the Ruby version: .tool-versions. Every step
-      # below reads $RUBY_VERSION, so bumping Ruby means editing .tool-versions
-      # (and the Gemfile pin) only -- CI follows automatically, no drift.
-      - name: Read Ruby version from .tool-versions
-        run: echo "RUBY_VERSION=$(awk '/^ruby / {print $2}' .tool-versions)" >> "$GITHUB_ENV"
-
-      # This Ruby is old enough that setup-ruby has no prebuilt for current
-      # runners and it won't build against the runner's system OpenSSL 3, so we
-      # let mise/ruby-build compile it (ruby-build builds a compatible OpenSSL
-      # itself). Mirrors local development.
-      - name: Set up mise
-        uses: jdx/mise-action@v2
+      # Ruby version comes from .tool-versions -- the single source of truth,
+      # shared with local mise. setup-ruby downloads a prebuilt in seconds and
+      # caches gems; the bundler version is taken from Gemfile.lock's
+      # BUNDLED WITH. (Prebuilts exist for every version we target, down to 2.1.9.)
+      - uses: ruby/setup-ruby@v1
         with:
-          install: false # don't install every tool in .tool-versions (postgres, redis, ...)
-          cache: false # we cache just the Ruby build ourselves, below
-
-      # Caching the compiled Ruby (the slow part -- a few minutes) keyed on the
-      # version means only the first run per version pays the build cost. Gems
-      # live inside this dir too, so they ride along; bundle install reconciles.
-      - name: Cache Ruby ${{ env.RUBY_VERSION }}
-        uses: actions/cache@v4
-        with:
-          path: ~/.local/share/mise/installs/ruby/${{ env.RUBY_VERSION }}
-          key: mise-ruby-${{ env.RUBY_VERSION }}-${{ runner.os }}
-
-      - name: Install Ruby build dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends \
-            autoconf patch build-essential libyaml-dev \
-            libreadline-dev zlib1g-dev libffi-dev libgdbm-dev libncurses-dev
-
-      - name: Install Ruby
-        run: mise install "ruby@$RUBY_VERSION"
-
-      - name: Install gems
-        run: |
-          mise exec "ruby@$RUBY_VERSION" -- gem install bundler -v 1.16.1
-          mise exec "ruby@$RUBY_VERSION" -- bundle install --jobs 4 --retry 3
+          ruby-version: .tool-versions
+          bundler-cache: true
 
       - name: Build test (gem compatibility + output)
-        run: mise exec "ruby@$RUBY_VERSION" -- bundle exec ruby test/build_test.rb
+        run: bundle exec ruby test/build_test.rb
 
       - name: Server smoke test
-        run: mise exec "ruby@$RUBY_VERSION" -- bundle exec ruby test/server_test.rb
+        run: bundle exec ruby test/server_test.rb
