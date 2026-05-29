@@ -65,3 +65,10 @@ ul, ol {
 }
 .welcome h2 { margin-top: 0.625em; }
 .welcome ul.icons li { display: inline-block; }
+.welcome ul.icons a { color: #477DCA; }
+.welcome ul.icons a:hover { color: #2c5999; }
+.welcome ul.icons svg {
+  width: 2em;
+  height: 2em;
+  vertical-align: middle;
+}
