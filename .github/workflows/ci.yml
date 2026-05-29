@@ -26,3 +26,6 @@ jobs:
 
       - name: Server smoke test
         run: bundle exec ruby test/server_test.rb
+
+      - name: Production serving smoke test (puma + config.ru)
+        run: bundle exec ruby test/production_test.rb
