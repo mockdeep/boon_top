@@ -31,10 +31,11 @@ class BuildTest < Minitest::Test
   end
 
   def test_assets_compiled
-    css = File.join(BUILD_DIR, 'stylesheets', 'all.css')
-    js  = File.join(BUILD_DIR, 'javascripts', 'all.js')
-    assert File.exist?(css), 'expected stylesheets/all.css to compile'
-    assert File.exist?(js),  'expected javascripts/all.js to be built'
+    # asset_hash fingerprints the filenames (all-<hash>.css), so match by glob.
+    css = Dir[File.join(BUILD_DIR, 'stylesheets', 'all-*.css')]
+    js  = Dir[File.join(BUILD_DIR, 'javascripts', 'all-*.js')]
+    refute_empty css, 'expected a fingerprinted stylesheets/all-*.css'
+    refute_empty js,  'expected a fingerprinted javascripts/all-*.js'
   end
 
   def test_social_icons_are_inline_svg
