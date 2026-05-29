@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Ruby 2.1.5 (2014) has no setup-ruby prebuilt for current runners and
+      # won't build against the runner's system OpenSSL 3, so we let
+      # mise/ruby-build compile it (ruby-build builds a compatible OpenSSL
+      # itself). This mirrors local development, which uses the same pin in
+      # .tool-versions.
+      - name: Set up mise
+        uses: jdx/mise-action@v2
+        with:
+          install: false # don't install every tool in .tool-versions (postgres, redis, ...)
+          cache: false # we cache just the Ruby build ourselves, below
+
+      # Caching the compiled Ruby (the slow part -- a few minutes) keyed on the
+      # version means only the first run pays the build cost. Gems live inside
+      # this dir too, so they ride along; bundle install reconciles any changes.
+      - name: Cache Ruby 2.1.5
+        uses: actions/cache@v4
+        with:
+          path: ~/.local/share/mise/installs/ruby/2.1.5
+          key: mise-ruby-2.1.5-${{ runner.os }}
+
+      - name: Install Ruby build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            autoconf patch build-essential libyaml-dev \
+            libreadline-dev zlib1g-dev libffi-dev libgdbm-dev libncurses-dev
+
+      - name: Install Ruby 2.1.5
+        run: mise install ruby@2.1.5
+
+      - name: Install gems
+        run: |
+          mise exec ruby@2.1.5 -- gem install bundler -v 1.16.1
+          mise exec ruby@2.1.5 -- bundle install --jobs 4 --retry 3
+
+      - name: Build test (gem compatibility + output)
+        run: mise exec ruby@2.1.5 -- bundle exec ruby test/build_test.rb
+
+      - name: Server smoke test
+        run: mise exec ruby@2.1.5 -- bundle exec ruby test/server_test.rb
