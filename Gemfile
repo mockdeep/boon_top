@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.5.9'
+ruby '2.6.10'
 
 gem 'middleman', '~> 3.3.7'
 gem 'font-awesome-middleman'
