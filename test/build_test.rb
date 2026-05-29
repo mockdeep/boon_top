@@ -36,4 +36,9 @@ class BuildTest < Minitest::Test
     assert File.exist?(css), 'expected stylesheets/all.css to compile'
     assert File.exist?(js),  'expected javascripts/all.js to be built'
   end
+
+  def test_font_awesome_loaded_via_cdn
+    html = File.read(File.join(BUILD_DIR, 'index.html'))
+    assert_includes html, 'font-awesome', 'expected the Font Awesome CDN stylesheet link in the page'
+  end
 end
