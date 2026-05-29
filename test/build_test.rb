@@ -37,8 +37,11 @@ class BuildTest < Minitest::Test
     assert File.exist?(js),  'expected javascripts/all.js to be built'
   end
 
-  def test_font_awesome_loaded_via_cdn
+  def test_social_icons_are_inline_svg
     html = File.read(File.join(BUILD_DIR, 'index.html'))
-    assert_includes html, 'font-awesome', 'expected the Font Awesome CDN stylesheet link in the page'
+    assert_includes html, '<svg', 'expected inline SVG icons in the page'
+    refute_includes html, 'font-awesome', 'Font Awesome should no longer be referenced anywhere'
+    assert_includes html, 'github.com/mockdeep', 'expected the GitHub icon link'
+    assert_includes html, 'mailto:lobatifricha', 'expected the email icon link'
   end
 end
