@@ -29,7 +29,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.3.4)
+    concurrent-ruby (1.3.6)
     connection_pool (3.0.2)
     contracts (0.17.3)
     dotenv (3.2.0)
@@ -43,8 +43,9 @@ GEM
     fast_blank (1.0.1)
     fastimage (2.4.1)
     ffi (1.17.4)
-    haml (5.2.2)
-      temple (>= 0.8.0)
+    haml (6.4.0)
+      temple (>= 0.8.2)
+      thor
       tilt
     hamster (3.0.0)
       concurrent-ruby (~> 1.0)
@@ -159,8 +160,6 @@ PLATFORMS
 DEPENDENCIES
   bitters
   bourbon (~> 4.0)
-  concurrent-ruby (= 1.3.4)
-  haml (~> 5.2)
   middleman (~> 4.6)
   middleman-livereload (~> 3.4.0)
   middleman-sprockets (~> 4.1)
@@ -174,4 +173,4 @@ RUBY VERSION
    ruby 3.3.11p205
 
 BUNDLED WITH
-   2.4.22
+   2.7.2

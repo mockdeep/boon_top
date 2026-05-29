@@ -10,15 +10,10 @@ gem 'rack-contrib'
 gem 'puma'
 gem 'rake'
 
-# concurrent-ruby 1.3.5+ stopped requiring 'logger', which breaks activesupport
-# < 7.1 (middleman caps it at < 7.1) with an uninitialized-constant Logger error.
-gem 'concurrent-ruby', '1.3.4'
-
 # Sass toolchain held at the last Ruby-Sass versions so the existing SCSS needs
 # no rewrite (Bourbon 5+/Neat 2+ dropped these mixins). 'sass' pins Ruby Sass
 # (not libsass), which Bourbon 4 / Neat 1 require.
 gem 'sass'
-gem 'haml', '~> 5.2' # 6+ / 7+ require newer Ruby than 2.6
 gem 'bitters'
 gem 'bourbon', '~> 4.0'
 gem 'neat', '~> 1.7'
