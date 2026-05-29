@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '3.1.7'
+ruby '3.2.11'
 
 gem 'middleman', '~> 4.5.1'
 gem 'middleman-sprockets', '~> 4.1'
