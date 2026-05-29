@@ -47,8 +47,12 @@ class ProductionTest < Minitest::Test
   end
 
   def test_serves_compiled_asset
-    res = get('/stylesheets/all.css')
-    assert_equal '200', res.code, "expected the built all.css to be served, got #{res.code}"
+    # asset_hash fingerprints the filename, so discover the real URL from the
+    # page rather than assuming /stylesheets/all.css.
+    css_path = get('/').body[%r{href="(/stylesheets/all-[^"]+\.css)"}, 1]
+    refute_nil css_path, 'could not find the fingerprinted all.css link in the page'
+    res = get(css_path)
+    assert_equal '200', res.code, "expected the built CSS served at #{css_path}, got #{res.code}"
   end
 
   private
