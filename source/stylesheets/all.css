@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+/* Plain CSS, replacing the old Bourbon/Neat/Bitters Sass toolchain. Values are
+   carried over verbatim from the previous compiled output, trimmed to the
+   elements this one-page site actually uses. normalize.css is loaded
+   separately (see layouts/layout.erb). */
+
+/* Border-box everywhere (was Neat's reset). */
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+
+/* Base typography (was Bitters). */
+body {
+  -webkit-font-smoothing: antialiased;
+  background-color: white;
+  color: #333;
+  font-family: "Oxygen", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-size: 1em;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Oxygen", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  line-height: 1.25;
+  margin: 0;
+  text-rendering: optimizeLegibility;
+}
+
+h1 { font-size: 2.25em; }
+h2 { font-size: 2em; }
+
+p { margin: 0 0 0.75em; }
+
+a {
+  color: #477DCA;
+  text-decoration: none;
+  transition: color 0.1s linear;
+}
+a:hover { color: #2c5999; }
+a:active, a:focus { color: #2c5999; outline: none; }
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+/* Page layout (was Neat's outer-container + partials/_layout.scss). */
+.welcome {
+  max-width: 43.75em;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.welcome::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.welcome h1 {
+  font-family: "EB Garamond", Georgia, Cambria, "Times New Roman", Times, serif;
+  font-size: 3.75em;
+  margin: 1.5625em;
+  text-align: center;
+}
+.welcome h2 { margin-top: 0.625em; }
+.welcome ul.icons li { display: inline-block; }
