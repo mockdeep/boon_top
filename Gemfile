@@ -8,6 +8,7 @@ gem 'middleman-livereload', '~> 3.4.0' # 3.5.0 requires Ruby >= 2.7
 
 gem 'rack-contrib'
 gem 'puma'
+gem 'rake'
 
 # concurrent-ruby 1.3.5+ stopped requiring 'logger', which breaks activesupport
 # < 7.1 (middleman caps it at < 7.1) with an uninitialized-constant Logger error.

@@ -12,8 +12,10 @@
 require 'minitest/autorun'
 require 'net/http'
 
-# Build the static site once so puma/config.ru has something to serve.
-BUILD_OK = system('bundle exec middleman build', out: File::NULL, err: File::NULL)
+# Build via the SAME command Heroku runs at deploy (rake assets:precompile),
+# not `middleman build` directly -- so this test covers the real deploy build
+# path (e.g. it fails if rake isn't bundled, which silently breaks the deploy).
+BUILD_OK = system('bundle exec rake assets:precompile', out: File::NULL, err: File::NULL)
 
 class ProductionTest < Minitest::Test
   PORT = 4569
