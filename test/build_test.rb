@@ -31,11 +31,9 @@ class BuildTest < Minitest::Test
   end
 
   def test_assets_compiled
-    # asset_hash fingerprints the filenames (all-<hash>.css), so match by glob.
+    # asset_hash fingerprints the filename (all-<hash>.css), so match by glob.
     css = Dir[File.join(BUILD_DIR, 'stylesheets', 'all-*.css')]
-    js  = Dir[File.join(BUILD_DIR, 'javascripts', 'all-*.js')]
     refute_empty css, 'expected a fingerprinted stylesheets/all-*.css'
-    refute_empty js,  'expected a fingerprinted javascripts/all-*.js'
   end
 
   def test_social_icons_are_inline_svg

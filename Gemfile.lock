@@ -93,9 +93,6 @@ GEM
       em-websocket (~> 0.5.1)
       middleman-core (>= 3.3)
       rack-livereload (~> 0.3.15)
-    middleman-sprockets (4.1.1)
-      middleman-core (~> 4.0)
-      sprockets (>= 3.0)
     minitest (6.0.6)
       drb (~> 2.0)
       prism (~> 1.5)
@@ -127,10 +124,6 @@ GEM
       ffi (~> 1.9)
     securerandom (0.4.1)
     servolux (0.13.0)
-    sprockets (4.2.2)
-      concurrent-ruby (~> 1.0)
-      logger
-      rack (>= 2.2.4, < 4)
     temple (0.10.4)
     thor (1.5.0)
     tilt (2.7.0)
@@ -149,7 +142,6 @@ PLATFORMS
 DEPENDENCIES
   middleman (~> 4.6)
   middleman-livereload (~> 3.4.0)
-  middleman-sprockets (~> 4.1)
   puma
   rack-contrib
   rake
