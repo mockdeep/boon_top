@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '3.3.11'
+ruby '3.4.9'
 
 gem 'middleman', '~> 4.6'
 gem 'middleman-livereload', '~> 3.4.0' # 3.5.0 requires Ruby >= 2.7
