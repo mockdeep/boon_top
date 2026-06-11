@@ -41,6 +41,6 @@ class BuildTest < Minitest::Test
     assert_includes html, '<svg', 'expected inline SVG icons in the page'
     refute_includes html, 'font-awesome', 'Font Awesome should no longer be referenced anywhere'
     assert_includes html, 'github.com/mockdeep', 'expected the GitHub icon link'
-    assert_includes html, 'mailto:lobatifricha', 'expected the email icon link'
+    assert_includes html, 'mailto:robert@boon.gl', 'expected the email icon link'
   end
 end
