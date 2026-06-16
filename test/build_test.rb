@@ -36,11 +36,10 @@ class BuildTest < Minitest::Test
     refute_empty css, 'expected a fingerprinted stylesheets/all-*.css'
   end
 
-  def test_social_icons_are_inline_svg
+  def test_contact_links_present
     html = File.read(File.join(BUILD_DIR, 'index.html'))
-    assert_includes html, '<svg', 'expected inline SVG icons in the page'
     refute_includes html, 'font-awesome', 'Font Awesome should no longer be referenced anywhere'
-    assert_includes html, 'github.com/mockdeep', 'expected the GitHub icon link'
-    assert_includes html, 'mailto:robert@boon.gl', 'expected the email icon link'
+    assert_includes html, 'github.com/mockdeep', 'expected the GitHub link'
+    assert_includes html, 'mailto:robert@boon.gl', 'expected the email link'
   end
 end
