@@ -85,9 +85,9 @@ GEM
       toml
       uglifier (>= 3, < 5)
       webrick
-    minitest (6.0.6)
+    minitest (6.1.0)
       drb (~> 2.0)
-      prism (~> 1.5)
+      prism (>= 1.5, < 3)
     nio4r (2.7.5)
     padrino-helpers (0.16.2)
       i18n (>= 0.6.7, < 2)
@@ -96,9 +96,9 @@ GEM
     padrino-support (0.16.2)
     parallel (2.3.0)
     parslet (2.0.0)
-    prism (1.9.0)
+    prism (2.1.0)
     public_suffix (7.0.5)
-    puma (8.0.2)
+    puma (8.0.3)
       nio4r (~> 2.0)
     rack (3.2.8)
     rack-contrib (2.5.0)
